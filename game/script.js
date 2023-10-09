@@ -97,7 +97,7 @@ function populateNumble(){
 function winner(){
   gameover = true;
   console.log(minimap);
-  document.getElementById("sharedata").innerHTML = `Numble #${answer} ${row}/6<br><br>${minimap}`;
+  document.getElementById("sharedata").innerHTML = `123WIN DIGITDIVE #${answer} ${row}/6<br><br>${minimap}`;
   togglePanel("winner", "block");
 }
 
