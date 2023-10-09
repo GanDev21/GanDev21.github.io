@@ -147,16 +147,7 @@ let hardmode = false;
 
 
 document.getElementById("sharebutton").addEventListener("click", async () => {
-  try {
-    const regex = /(<br>)+/g;
-    let shareText = document.getElementById("sharedata").innerHTML.replace(regex, "\n");
-    // shareText = `Numble #${answer} ${row}/6\n\n${shareText}`
-    navigator.clipboard.writeText(shareText).then(()=>{alert("Copied to clipboard!")});
-    //await navigator.share({ title: "Numble", text: shareText });
-    console.log("Data was shared successfully");
-  } catch (err) {
-    console.error("Share failed:", err.message);
-  }
+  location.reload();
 });
 
 populateNumble();
