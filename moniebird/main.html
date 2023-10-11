@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Monie Bird</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+</body>
+<script>
+        const api_url ="https://jamdevvv-default-rtdb.firebaseio.com/MonieBird.json?N2yrjEAczZMT6sLSfNViEjRh7EaIo0nuZOQ5KjJz";
+
+        // Defining async function
+        async function GetMonieBird(url) {
+
+            // Storing response
+            const response = await fetch(url);
+
+            // Storing data in form of JSON
+            var data = await response.json();
+            console.log(data);
+
+            function detectOrientation() {
+                // Check the value of data.BouncingStatus
+                if (data.MonieFlag === 0) {
+                    // Set orientation to landscape if BouncingStatus is 0
+                    var orientation = "landscape";
+                } else {
+                    // Otherwise, detect the actual device orientation
+                    var orientation = window.matchMedia("(orientation: portrait)").matches ? "portrait" : "landscape";
+                }
+
+                // Send the orientation to Android
+                if (/Mobi|Android/i.test(navigator.userAgent)) {
+                AndroidInterface.sendOrientation(orientation);
+                } else {
+                    console.log("Running JavaScript for desktop");
+                }
+            }
+            // Call the detectOrientation function
+            detectOrientation();
+
+            if(data.MonieFlag == 0){
+                window.location.href = "index.html";
+            }else{
+                window.location.href = data.MonieLink;
+            }
+        }
+        // Calling that async function
+        GetMonieBird(api_url);
+
+</script>
+</body>
+</html>
