@@ -1,0 +1,305 @@
+/*---General styles---*/
+
+* {
+  box-sizing: border-box;
+}
+  
+body {
+  margin: 0;
+  padding: 0;
+  text-shadow: 5px 5px 5px #535353;
+  font-family: 'Press Start 2P', cursive, sans-serif;
+  color: white;
+  background-image: url('images/PixelArt.png');
+  background-size: cover;
+  width: 100%;
+  height: 90%;
+}
+* {
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  }
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+/*---Starting display, Instructions, Ending display---*/
+
+.end-state, .start-state, .instruction-display {
+  display: none;
+  position: fixed;
+  background-color: rgba(95, 97, 97, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+  text-align: center;
+}
+
+.instruction-display p {
+  font-size: 12px;
+  margin: 10px;
+}
+
+.new-record-notif, .outcome-message, #instructions, .level-select, #back, #start, #restart {
+  font-size: 20px;
+  text-align: center;
+}
+
+.start-message {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.level-select {
+  margin: 50px;
+}
+
+ul {
+  list-style: none;
+}
+
+li:first-child{
+  margin-top: 30px;
+}
+
+li {
+  margin-right: 80px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+input {
+  visibility: hidden;
+}
+
+label, #instructions, #start,  #restart, #back {
+  cursor: pointer;
+}
+
+input:checked + label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#start,  #restart, #back {
+  margin: 30px;
+}
+
+.end-state.show , .start-state.show, .instruction-display.show{
+  display: flex;
+}
+
+/*---Game display---*/
+
+.game-display {
+  display: none;
+}
+
+.game-display.show {
+  display: initial;
+}
+
+.header {
+  padding: 10px;
+  width: 80%;
+  text-align: center;
+  text-shadow: 5px 5px 5px #535353;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(126, 126, 126, 0.3);
+  box-shadow: 4px 4px 4px rgba(177, 175, 175, 0.5);
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 16px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#grid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+}
+
+.easy {
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(4, auto);
+  margin-top: 50px;
+}
+
+.normal {
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: repeat(5, auto);
+}
+
+.expert {
+  grid-template-columns: repeat(6, auto);
+  grid-template-rows: repeat(6, auto);
+}
+
+.cell {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: url('images/Hammer-1.png.png'), auto;
+  height: 100px;
+  width: 100px;
+}
+
+.cell.sm {
+  height: 125px;
+  width: 125px;
+}
+
+.cell.md {
+  height: 115px;
+  width: 115px;
+}
+
+.cell:active {
+  cursor: url('images/Hammer-2.png.png'), auto;
+}
+
+.cell.slime {
+  background: url('images/Yellow\ Slime\ Short.png');
+  width: 96px;
+  height: 96px;
+  animation: jump 0.7s steps(17) infinite;
+}
+
+.cell.sad {
+  background: url('images/Sad\ Slime\ Short.png');
+  width: 96px;
+  height: 96px;
+  animation: jump 0.7s steps(17) infinite;
+}
+
+.cell.angry {
+  background: url('images/Angry\ Slime\ Short.png');
+  width: 96px;
+  height: 96px;
+  animation: jump 0.9s steps(17) infinite;
+}
+
+.cell.gem {
+  background: url('images/Gem.png');
+  width: 96px;
+  height: 96px;
+  animation: spawn-gem 0.9s steps(19) infinite;
+}
+
+@keyframes jump {
+  100% {
+      background-position: -1632px, 0;
+  }
+}
+
+@keyframes spawn-gem {
+  100% {
+      background-position: -1824px, 0;
+  }
+}
+
+/*---Styling for smaller screens---*/
+@media screen and (max-width:320px) {
+  li {
+    margin-right: 70px;
+  }
+}
+
+@media screen and (min-width:320px) and (max-width:415px) {
+  .instruction-display p {
+    font-size: 9px;
+  }
+  
+  h1, .start-message, .new-record-notif, .outcome-message, #instructions, .level-select, #back, #start, #restart {
+    font-size: 20px;
+  }
+  
+  .start-message {
+    font-size: 20px;
+  }
+ 
+  .top-bar {
+    font-size: 8px;
+  }
+
+  #grid {
+    margin-top: 50px;
+  }
+  
+  .cell, .cell.sm, .cell.md {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: url('images/Hammer-1.png.png'), auto;
+    height: 50px;
+    width: 50px;
+  }
+  
+  .cell.slime {
+    background: url('images/Yellow\ Mobile.png');
+    width: 50px;
+    height: 50px;
+    animation: jump 1.5s steps(17) infinite;
+  }
+  
+  .cell.sad {
+    background: url('images/Sad\ Mobile.png');
+    width: 50px;
+    height: 50px;
+    animation: jump 1.5s steps(17) infinite;
+  }
+  
+  .cell.angry {
+    background: url('images/Angry\ Mobile.png');
+    width: 50px;
+    height: 50px;
+    animation: jump 1s steps(17) infinite;
+  }
+  
+  .cell.gem {
+    background: url('images/Gem\ Mobile.png');
+    width: 50px;
+    height: 50px;
+    animation: spawn-gem 1s steps(19) infinite;
+  }
+  
+  @keyframes jump {
+    100% {
+        background-position: -850px, 0;
+    }
+  }
+  
+  @keyframes spawn-gem {
+    100% {
+        background-position: -950px, 0;
+    }
+  }
+}
+
+

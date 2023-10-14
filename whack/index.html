@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico'/>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Whacktopia i9: Slime Invasion</title>
+</head>
+<body>
+    <div class="start-state show" id="startState">
+        <div class="start-message">Whacktopia i9:<br>Slime Invasion</div>
+        <div id="instructions">Instructions</div>
+        <div class="level-select">
+            <span>Select difficulty:</span>
+            <ul>
+                <li>
+                    <input type='radio' value='1' name='difficultyLevel' id='easy'/>
+                    <label for='easy'>Easy😎</label>
+                </li>
+                <li>
+                    <input type='radio' value='2' name='difficultyLevel' id='normal'/>
+                    <label for='normal'>Medium😅</label>
+                </li>
+                <li>
+                    <input type='radio' value='3' name='difficultyLevel' id='expert'/>
+                    <label for='expert'>Hard😱</label>
+                </li>
+            </ul>
+        </div>
+        <div id="start">Click to Start</div>
+    </div>
+    <div class="instruction-display">
+        <p>Your slimes have escaped the farm! Round them up to bring them home.</p>
+        <p>Each round lasts 60 seconds. The game is over when time is up, or HP hits 0.</p>
+        <img src="images/Yellow Slime Thumbnail.png">
+        <p>Boink the yellow slimes (Score +10)</p>
+        <img src="images/Sad Slime Thumbnail.png">
+        <p>Sad slimes are sensitive, and will die if boinked! Hurting them breaks your heart (HP -1)</p>
+        <img src="images/Angry Slime Thumbnail.png">
+        <p>Wild slimes attack when they appear (HP -1) Luckily, having a high score lowers their chances of landing a hit</p>
+        <img src="images/Gem Thumbnail.png">
+        <p>Collecting 3 gems gives you a chance to boink a wild slime, which nets you a higher score (Score +25)</p>
+        <div id="back">Back</div>
+    </div>
+    <div class="game-display">
+        <div class="header">
+            <h1>Whacktopia i9: <br> Slime Invasion</h1>
+            <div class="top-bar">
+                <p class="countdown">Time Left: <span id="secondsLeft"></span></p>
+                <p class="gemboard">Gems: <span id="gemNum"></span></p>
+                <p class="scoreboard">Score: <span id="scoreNum"></span></p>
+                <p class="health">Lives: <span id="numLives"></span></p>
+            </div>  
+        </div>
+        <div id="grid"></div> 
+    </div>
+    <div class="end-state" id="endState">
+        <div class="new-record-notif"></div><br><br>
+        <div class="outcome-message"></div>
+        <div id="restart">Restart</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
