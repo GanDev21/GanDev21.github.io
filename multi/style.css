@@ -180,3 +180,13 @@ html
     z-index: 2;
     display:none;
 }
+* {
+    user-select: none;
+    -webkit-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none; 
+  }
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
