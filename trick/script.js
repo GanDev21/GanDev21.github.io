@@ -35,11 +35,11 @@ const CONTENT = [
   value: '+300' },
 
 {
-  type: '👻',
+  type: '👹',
   value: '-250' },
 
 {
-  type: '🧟‍♂️',
+  type: '👽',
   value: '-500' }];
 
 
