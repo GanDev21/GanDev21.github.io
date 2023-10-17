@@ -116,9 +116,9 @@
     }
     #start {
         width: 200px;
-        position: fixed; /* Position the element fixed relative to the viewport */
-        bottom: 10px; /* Adjust the distance from the bottom */
-        right: 10px; /* Adjust the distance from the right */
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
         text-align: center;
         padding: 5px;
         cursor: pointer;
@@ -248,7 +248,7 @@ c,d){newx=0<a?b[a-1].x+b[a-1].w:b[b.length-1].x+b[b.length-1].w-d;b[a].x<c?b[a].
 height=600;c.style.width=width+"px";c.style.height=height+"px";ctx.font="bold 18px sans-serif"}else this.fitToWindow(),window.addEventListener("resize",a,!1);this.fullscreen=!this.fullscreen};this.fitToWindow=function(){var a=document.getElementById("gameWindow");canvas.width=width=window.innerWidth;canvas.height=height=window.innerHeight;a.style.width=width+"px";a.style.height=height+"px";ctx.font="bold 18px sans-serif"};this.toggleMobileControls=function(a){for(var b=document.getElementsByClassName("button"),
 c=0;c<b.length;c++)b[c].style.display=a?"block":"none"};isMobile()&&(this.toggleFullscreen(),this.isMobile=!0)}window.onload=function(){game=new Game;window.addEventListener("keydown",onKeyDown,!1);window.addEventListener("keyup",onKeyUp,!1);document.getElementById("start").addEventListener("click",function(a){game.init();a=document.getElementsByClassName("menu");for(var b=0;b<a.length;b++)a[b].style.display="none"},!1)};
 function Player(){this.x=-200;this.y=1;this.z=-87.5;this.w=25;this.h=120;this.d=25;this.jumping=!1;this.yV=0;this.onTile=!0;this.update=function(){!this.onTile&&0>=this.y&&(this.fall=!0);if(this.fall)this.y-=game.gravSpeed/4*(dt/1E3),this.x-=game.speed*(dt/1E3);else{if(keyA||keyLeft)this.z+=50,keyA=keyLeft=!1;if(keyD||keyRight)this.z-=50,keyD=keyRight=!1;-137.5>this.z&&(this.z=-137.5);-37.5<this.z&&(this.z=-37.5);(keySpace||keyUp||keyW)&!this.jumping&&(this.jumping=!0,this.yV=1200,keySpace=keyUp=
-keyW=!1);this.y+=this.yV*(dt/1E3);0>=this.y?(this.y=0,this.jumping=!1,this.yV=0):this.yV-=game.gravSpeed*(dt/1E3);this.onTile=!1}};this.draw=function(){boxFilled(this.x,this.y,this.z,this.w,this.h,this.d,"#333","#f1c40f");ctx.save();var a=xFla(this.x,this.y,this.z),b=yFla(this.x,this.y,this.z);ctx.fillStyle="#eee";for(var c=0;3>c;c++)for(var d=0;5>d;d++)ctx.globalAlpha=Math.random(),ctx.fillRect(a-25+10*d,b-75+20*c,10,20);ctx.restore()}}
+keyW=!1);this.y+=this.yV*(dt/1E3);0>=this.y?(this.y=0,this.jumping=!1,this.yV=0):this.yV-=game.gravSpeed*(dt/1E3);this.onTile=!1}};this.draw=function(){boxFilled(this.x,this.y,this.z,this.w,this.h,this.d,"#333","#E0AC69");ctx.save();var a=xFla(this.x,this.y,this.z),b=yFla(this.x,this.y,this.z);ctx.fillStyle="#eee";for(var c=0;3>c;c++)for(var d=0;5>d;d++)ctx.globalAlpha=Math.random(),ctx.fillRect(a-25+10*d,b-75+20*c,10,20);ctx.restore()}}
 function Row(a,b,c){this.w=50;this.x=a;this.y=b;this.z=c;this.tiles=[];this.tiles.push(new Tile(a,b,c-50));this.tiles.push(new Tile(a,b,c));this.tiles.push(new Tile(a,b,c+50));this.update=function(a,b){this.x=a;for(var c=this.tiles.length-1;0<=c;c--)b?this.tiles[c].kill=!0:this.tiles[c].x=a;b&&this.randomObstacle()};this.draw=function(){for(var a=this.tiles.length;a--;)this.tiles[a].draw()};this.randomObstacle=function(){for(var a=(randomBetween(0,100)>game.luck?game.getRandomRow("2"):game.getRandomRow("1"))[0],
 b=[-50,0,50],c=this.tiles.length=0;c<a.length;c++)switch(a.charAt(c)){case "T":this.tiles.push(new Tile(this.x,this.y,this.z+b[c]));break;case "C":var g=new Tile(this.x,this.y,this.z+b[c]);g.cracked=!0;this.tiles.push(g);break;case "J":this.tiles.push(new Block(this.x,this.y,this.z+b[c]))}}}
 function Tile(a,b,c,d){this.x=a;this.y=b;this.z=c;this.w=50;this.h=0;this.d=50;this.startX=a;this.layer=d;this.type="Tile";this.cracked=!1;this.cracks=6;this.cLength=25;this.kill=this.hit=!1;game.colliders.push(this);this.draw=function(){boxFilled(this.x,this.y,this.z,this.w,this.h,this.d,"#333","#ccc");if(this.cracked){ctx.save();plot(this.x,this.y,this.z);ctx.strokeStyle=this.colliding?"red":"black";ctx.lineWidth=2;ctx.beginPath();for(var a=this.cracks,b=0;b<a;b++)drawIso((0==b%2?this.x+this.cLength:
@@ -260,7 +260,5 @@ onKeyUp=function(a){switch(a.keyCode){case 68:keyD=!1;break;case 65:keyA=!1;brea
 plot=function(a,b,c){move(xFla(a,b,c),yFla(a,b,c))};drawIso=function(a,b,c){line(xFla(a,b,c),yFla(a,b,c))};move=function(a,b){ctx.moveTo(a,b)};line=function(a,b){ctx.lineTo(a,b)};
 boxFilled=function(a,b,c,d,e,f,g,h,k){ctx.strokeStyle=g;ctx.fillStyle=h;ctx.beginPath();plot(a,b+e,c);drawIso(a+d,b+e,c);drawIso(a+d,b+e,c+f);drawIso(a,b+e,c+f);drawIso(a,b+e,c);ctx.closePath();ctx.stroke();ctx.fill();0!=e&&(ctx.beginPath(),plot(a,b,c),drawIso(a+d,b,c),drawIso(a+d,b+e,c),drawIso(a,b+e,c),drawIso(a,b,c),ctx.closePath(),ctx.stroke(),ctx.fill(),0!=f&&(ctx.beginPath(),plot(a,b,c),drawIso(a,b+e,c),drawIso(a,b+e,c+f),drawIso(a,b,c+f),drawIso(a,b,c),ctx.closePath(),ctx.stroke(),ctx.fill()))};
     </script>
-
 </body>
-
 </html>
