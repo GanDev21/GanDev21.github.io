@@ -328,6 +328,7 @@
     }
   body {
     height: 120vh;
+    overflow: hidden;
   }
   #particles-js {
     height: 120vh;
